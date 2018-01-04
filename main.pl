@@ -9,6 +9,7 @@ print "Witamy w programie wspomagajacym licytacje brydzowa!\n";
 
 my $pozycjaGracza;
 my $pozycjaRozdajacego;
+my $pozycjaPartnera;
 
 while(1) {	#gracz podaje swoja pozycje - zmienna pozycjaGracza
 	print "Podaj swoja pozycje (NEWS): ";
@@ -16,6 +17,10 @@ while(1) {	#gracz podaje swoja pozycje - zmienna pozycjaGracza
 	chomp $pozycjaGracza;
 	$pozycjaGracza = uc $pozycjaGracza;
 	if ($pozycjaGracza =~ /[NEWS]/) {
+		if ($pozycjaGracza eq "N") {$pozycjaPartnera = "S";}
+		elsif ($pozycjaGracza eq "E") {$pozycjaPartnera = "W";}
+		elsif ($pozycjaGracza eq "W") {$pozycjaPartnera = "E";}
+		elsif ($pozycjaGracza eq "S") {$pozycjaPartnera = "N";}
 		last;
 	} else {
 		print "Bledna litera!\n";
@@ -107,3 +112,26 @@ $punktyPrzeliczeniowe = $punktyHonorowe + $ppC + $ppD + $ppH + $ppS;
 
 print "Punkty honorowe: $punktyHonorowe \n";
 print "Punkty przeliczeniowe: $punktyPrzeliczeniowe \n";
+
+#---------
+#LICYTACJA
+#---------
+
+my $ktoLicytuje = $pozycjaRozdajacego;
+my $ilePas = 0;
+my @listaOdzywek;
+my $p = 0; #wskaznik miejsca w tablicy
+my $k; #schowek na kolor
+for (my $i = 1; $i <= 7; $i++) {
+	for (my $j = 1; $j <= 5; $j++) {
+		if ($j == 1) {$k = "C";}
+		elsif ($j == 2) {$k = "D";}
+		elsif ($j == 3) {$k = "H";}
+		elsif ($j == 4) {$k = "S";}
+		elsif ($j == 5) {$k = "NT";}
+		@listaOdzywek[$p] = "$i$k";
+		$p++;
+	}
+}
+#przy kazdym podaniu odzywki wejscie bedzie sprawdzane z zawartoscia tablicy listaOdzywek
+#"zuzyte" odzywki beda wyrzucane z tablicy listaOdzywek
