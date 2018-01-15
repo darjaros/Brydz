@@ -3,8 +3,8 @@ Funkcje podstawowe:
 - [x] weryfikacja poprawności otrzymanych danych
 - [x] obliczenie podstawowych wskaźników - PH, PP, długości kolorów
 Licytacja:
-- [ ] przekazywanie głosu kolejnemu graczowi
-- [ ] blokada możliwości wybrania "zużytej" odzywki 
+- [x] przekazywanie głosu kolejnemu graczowi
+- [x] blokada możliwości wybrania "zużytej" odzywki 
 Baza wiedzy:
-- [ ] implementacja otwarć
+- [x] implementacja otwarć
 - [ ] implementacja rebidów 
