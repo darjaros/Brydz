@@ -12,6 +12,7 @@ sub odzew{
 	my $odzew = "";
 	while(1){
 		$odzew= <STDIN>;
+		$odzew = uc $odzew;
 		if ($odzew =~ /([1-7]([CDHS]|NT))|PAS|KON|REKON/){
 			if ($odzew =~ /1/ ){ $indexodzywki = 0*5; } 
 			elsif ($odzew =~ /2/){ $indexodzywki = 1*5; }
@@ -30,7 +31,7 @@ sub odzew{
 			if ($odzew  =~ /PAS/){$indexodzywki = $ostatniodzew; $ilePas++; last; }
 			if ($indexodzywki>$ostatniodzew){$ilePas=0;last; }
 			else{
-				print "Podanno odzew o za niskiej wartosci \n"
+				print "Podano odzew o za niskiej wartosci \n"
 			}
 		}
 					
