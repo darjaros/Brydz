@@ -364,8 +364,8 @@ while($ilePas < 3 || $pentla < 1 ){
 			($indexodzywki,$ilePas, $odzew) = &odzew($ostatniodzew,$ilePas,$listaOdzywek[$ostatniodzew]);
 			if ($indexodzywki>$ostatniodzew){
 				$ostatniodzew= $indexodzywki;
-				if ($odzew eq "PAS")
-				$odzywkiwypowiedziane{$indeks}=$indexodzywki;
+				if ($odzew eq "PAS"){
+				$odzywkiwypowiedziane{$indeks}=$indexodzywki;}
 				$indeks++;
 				}
 		}
