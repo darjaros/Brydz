@@ -234,7 +234,7 @@ while($ilePas < 3 || $pentla < 1 ){
 				
 			}
 			#odpowiedzi na otwarcia
-			if($indeks >= 1){
+			if($indeks == 1){
 				# odpowiedzi na 1 trefl i karo
 				# podniesienia pojedyncze
 				if ($odzywkiwypowiedziane{$indeks-1} < 2 && $punktyPrzeliczeniowe >5 &&  $ileD > 3 && $ileD > $ileC && $ileD >= $ileH && $ileD >= $ileS){$propozycja = 2;} # 1 karo				
@@ -302,6 +302,52 @@ while($ilePas < 3 || $pentla < 1 ){
 				#odpowiedz na otwarcie zaporowe
 				if ($odzywkiwypowiedziane{$indeks-1} > 15){$propozycja = 36;}
 			}
+			# odpowiedzi otwierającego na odpowiedzi na otwarcia
+			if ($indeks == 2 )
+			{
+				# reka minimalna
+				if ($punktyPrzeliczeniowe > 12 && $punktyPrzeliczeniowe < 16)
+				{
+					if ($odzywkiwypowiedziane{0} % 5 == 1 && $odzywkiwypowiedziane{$indeks-1} % 5 != 1 && $ileC > 5){$propozycja = $odzywkiwypowiedziane{0} + 5;} # trefl - powtorzenie koloru otwarcia
+					elsif ($odzywkiwypowiedziane{0} % 5 == 2 && $odzywkiwypowiedziane{$indeks-1} % 5 != 2 && $ileD > 5){$propozycja = $odzywkiwypowiedziane{0} + 5;} # karo - powtorzenie koloru otwarcia
+					elsif ($odzywkiwypowiedziane{0} % 5 == 3 && $odzywkiwypowiedziane{$indeks-1} % 5 != 3 && $ileH > 5){$propozycja = $odzywkiwypowiedziane{0} + 5;} # kier - powtorzenie koloru otwarcia
+					elsif ($odzywkiwypowiedziane{0} % 5 == 4 && $odzywkiwypowiedziane{$indeks-1} % 5 != 4 && $ileS > 5){$propozycja = $odzywkiwypowiedziane{0} + 5;} # pik - powtorzenie koloru otwarcia
+					elsif ($odzywkiwypowiedziane{$indeks-1} % 5 == 1 && $odzywkiwypowiedziane{0} % 5 != 1 && $ileC > 3){$propozycja = $odzywkiwypowiedziane{$indeks-1} + 5;} # trefl - odpowiedz na zmiane koloru
+					elsif ($odzywkiwypowiedziane{$indeks-1} % 5 == 2 && $odzywkiwypowiedziane{0} % 5 != 2 && $ileD > 3){$propozycja = $odzywkiwypowiedziane{$indeks-1} + 5;} # karo - odpowiedz na zmiane koloru
+					elsif ($odzywkiwypowiedziane{$indeks-1} % 5 == 3 && $odzywkiwypowiedziane{0} % 5 != 3 && $ileH > 3){$propozycja = $odzywkiwypowiedziane{$indeks-1} + 5;} # kier - odpowiedz na zmiane koloru
+					elsif ($odzywkiwypowiedziane{$indeks-1} % 5 == 4 && $odzywkiwypowiedziane{0} % 5 != 4 && $ileS > 3){$propozycja = $odzywkiwypowiedziane{$indeks-1} + 5;} # pik - odpowiedz na zmiane koloru
+					else {$propozycja = $odzywkiwypowiedziane{$indeks-1} + $odzywkiwypowiedziane{$indeks-1} % 5;} # BA - gdy brak lepszej opcji
+				}
+				
+				# reka srednia i maksymalna
+				if ($punktyPrzeliczeniowe > 15 && $punktyPrzeliczeniowe < 22)
+				{
+					if ($odzywkiwypowiedziane{0} % 5 == 1 && $odzywkiwypowiedziane{$indeks-1} % 5 != 1 && $ileC > 5){$propozycja = $odzywkiwypowiedziane{0} + 10;} # trefl - powtorzenie koloru otwarcia
+					elsif ($odzywkiwypowiedziane{0} % 5 == 2 && $odzywkiwypowiedziane{$indeks-1} % 5 != 2 && $ileD > 5){$propozycja = $odzywkiwypowiedziane{0} + 10;} # karo - powtorzenie koloru otwarcia
+					elsif ($odzywkiwypowiedziane{0} % 5 == 3 && $odzywkiwypowiedziane{$indeks-1} % 5 != 3 && $ileH > 5){$propozycja = $odzywkiwypowiedziane{0} + 10;} # kier - powtorzenie koloru otwarcia
+					elsif ($odzywkiwypowiedziane{0} % 5 == 4 && $odzywkiwypowiedziane{$indeks-1} % 5 != 4 && $ileS > 5){$propozycja = $odzywkiwypowiedziane{0} + 10;} # pik - powtorzenie koloru otwarcia
+					elsif ($rekazrownowazona == 1 && $punktyPrzeliczeniowe == 18){$propozycja = $odzywkiwypowiedziane{$indeks-1} + $odzywkiwypowiedziane{$indeks-1} % 5 + 5;} # BA
+					elsif ($odzywkiwypowiedziane{$indeks-1} % 5 == 1 && $odzywkiwypowiedziane{0} % 5 != 1 && $ileC > 3){$propozycja = $odzywkiwypowiedziane{$indeks-1} + 10;} # trefl - odpowiedz na zmiane koloru
+					elsif ($odzywkiwypowiedziane{$indeks-1} % 5 == 2 && $odzywkiwypowiedziane{0} % 5 != 2 && $ileD > 3){$propozycja = $odzywkiwypowiedziane{$indeks-1} + 10;} # karo - odpowiedz na zmiane koloru
+					elsif ($odzywkiwypowiedziane{$indeks-1} % 5 == 3 && $odzywkiwypowiedziane{0} % 5 != 3 && $ileH > 3){$propozycja = $odzywkiwypowiedziane{$indeks-1} + 10;} # kier - odpowiedz na zmiane koloru
+					elsif ($odzywkiwypowiedziane{$indeks-1} % 5 == 4 && $odzywkiwypowiedziane{0} % 5 != 4 && $ileS > 3){$propozycja = $odzywkiwypowiedziane{$indeks-1} + 10;} # pik - odpowiedz na zmiane koloru
+					else {$propozycja = 36;}
+				}
+				
+				# Stayman
+				if ($odzywkiwypowiedziane{0} == 5 && $odzywkiwypowiedziane{1} == 6 )
+				{
+					if ($ileH < 4 && $ileS < 4){$propozycja = 7;}
+					if ($ileH > 3){$propozycja = 8;}
+					if ($ileS > 3){$propozycja = 9;}
+				}
+			}
+			#odpowiedzi odpowiadajacego na odpowiedz otwierajacego
+			if ($indeks == 3 )
+			{
+				if ($punktyPrzeliczeniowe > 5){$propozycja=36;}
+			}
+			
 			print "Proponuje powiedziec:\n";
 			print $listaOdzywek[$propozycja];
 			printf "\nCo powiedziales\n";
@@ -314,7 +360,7 @@ while($ilePas < 3 || $pentla < 1 ){
 		}
 		elsif ($_ eq $pozycjaPartnera ){
 		
-			printf "Co powidzial twoj parter\n";
+			printf "Co powiedzial twoj partner\n";
 			($indexodzywki,$ilePas, $odzew) = &odzew($ostatniodzew,$ilePas,$listaOdzywek[$ostatniodzew]);
 			if ($indexodzywki>$ostatniodzew){
 				$ostatniodzew= $indexodzywki;
