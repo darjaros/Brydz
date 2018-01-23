@@ -25,17 +25,17 @@ sub odzew{
 			elsif ($odzew =~ /H/){ $indexodzywki += 3; }
 			elsif ($odzew =~ /S/){ $indexodzywki += 4; }
 			elsif ($odzew =~ /NT/){ $indexodzywki += 5; }
-			if ($odzew =~ /KON/){$ilePas=0;last;}
-			if ($odzew =~ /REKON/){$ilePas=0;last;}
-			if ($odzew  =~ /PAS/){ $ilePas++; last; }
+			if ($odzew =~ /KON/){ $indexodzywki = $ostatniodzew;$ilePas=0;last;}
+			if ($odzew =~ /REKON/){$indexodzywki = $ostatniodzew; $ilePas=0;last;}
+			if ($odzew  =~ /PAS/){$indexodzywki = $ostatniodzew; $ilePas++; last; }
 			if ($indexodzywki>$ostatniodzew){$ilePas=0;last; }
 			else{
-				print "Podanno odzew o za niskiej wartosci\n"
+				print "Podanno odzew o za niskiej wartosci \n"
 			}
 		}
 					
 		else{
-			print "Podanno niewlasciwe oznaczenie\n"
+			print "Podano niewlasciwe oznaczenie\n"
 		}		
 		
 	}
@@ -189,7 +189,8 @@ my @listaOdzywek=(	"PAS","1C","1D","1H","1S","1NT",
 					"4C","4D","4H","4S","4NT",
 					"5C","5D","5H","5S","5NT",
 					"6C","6D","6H","6S","6NT",
-					"7C","7D","7H","7S","7NT");
+					"7C","7D","7H","7S","7NT",
+					"??? - nie mogę ci pomóc!");
 my %odzywkiwypowiedziane = {};# miedzy tobą partnerem
 my $indeks =0; # oznacza ilosc odzywek miedzy partnerem a toba
 # GLOWNA PETLA Z WARUNKAMI
@@ -212,7 +213,7 @@ while($ilePas < 3 || $pentla < 1 ){
 				if($punktyPrzeliczeniowe >12 && $punktyPrzeliczeniowe< 22 && $ileS >= 5){$propozycja = 4;} # 1 pik
 				if($punktyHonorowe >  14 && $punktyHonorowe< 18 && $rekazrownowazona == 1){$propozycja = 5;} # 1 BA
 				# otwarcie 2
-				if($punktyPrzeliczeniowe >  22 ){$propozycja = 6;} #2 trefl
+				if($punktyPrzeliczeniowe > 22 && $rekazrownowazona == 0 ){$propozycja = 6;} #2 trefl
 				if($punktyPrzeliczeniowe< 13 && $ileD >= 6 && $mocD >= 2 ){$propozycja = 7;} # 2 karo
 				if($punktyPrzeliczeniowe< 13 && $ileH >= 6 && $mocH >= 2 ){$propozycja = 8;} # 2 kiery
 				if($punktyPrzeliczeniowe< 13 && $ileS >= 6 && $mocS >= 2 ){$propozycja = 9;} # 2 pik
@@ -226,27 +227,84 @@ while($ilePas < 3 || $pentla < 1 ){
 				#otwarcie 4
 				if($punktyPrzeliczeniowe< 13 && $ileC >= 8 && $mocC >= 2 ){$propozycja = 16;} # 4 trefl
 				if($punktyPrzeliczeniowe< 13 && $ileD >= 8 && $mocD >= 2 ){$propozycja = 17;} # 4 karo
-				if($punktyPrzeliczeniowe< 13 && $ileH >= 8 && $mocH >= 2 ){$propozycja = 18;} # 4 karo
-				if($punktyPrzeliczeniowe< 13 && $ileS >= 8 && $mocS >= 2 ){$propozycja = 19;} # 4 karo
+				if($punktyPrzeliczeniowe< 13 && $ileH >= 8 && $mocH >= 2 ){$propozycja = 18;} # 4 kier
+				if($punktyPrzeliczeniowe< 13 && $ileS >= 8 && $mocS >= 2 ){$propozycja = 19;} # 4 pik
 				
 				
 				
 			}
-			if($indeks != 0){
-				# odpoowiedzi na 1 trefl i karo
-				if ($odzywkiwypowiedziane{$indeks-1} < 2 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 &&  $ileD > 3 && $ileD > $ileC && $ileD >= $ileH && $ileD >= $ileS){$propozycja = 2;} # 1 karo				
-				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 &&   $ileH > 3 && $ileH > $ileC && $ileH > $ileD && $ileH >= $ileS){$propozycja = 3;} # 1 kier
-				if ($odzywkiwypowiedziane{$indeks-1} < 4 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 &&  $ileS > 3 && $ileS> $ileC && $ileS > $ileD && $ileS > $ileH){$propozycja = 4;} # 1 pik
-				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 &&  $ileH == 5 && $ileH> $ileC && $ileH >= $ileD && $ileH > $ileS){$propozycja = 3;} # 1 kier	
-				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 &&   $ileS == 5 && $ileS> $ileC && $ileS > $ileD && $ileS >= $ileH){$propozycja = 4;} # 1 pik	
-				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 &&   $ileH > 3  $ileH > $ileC && $ileH > $ileD && $ileH >= $ileS){$propozycja = 3;} # 1 kier
-				if ($odzywkiwypowiedziane{$indeks-1} == 3 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 &&   $ileC > 5  $ileD <  4 && $ileH < 4 && $ileS < 4){$propozycja = 3;} # 1 BA
-				if ($odzywkiwypowiedziane{$indeks-1} < 2 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 &&   $ileH > 3  $ileH > $ileC && $ileH > $ileD && $ileH >= $ileS){$propozycja = 3;} # 2 trefl
+			#odpowiedzi na otwarcia
+			if($indeks >= 1){
+				# odpowiedzi na 1 trefl i karo
+				# podniesienia pojedyncze
+				if ($odzywkiwypowiedziane{$indeks-1} < 2 && $punktyPrzeliczeniowe >5 &&  $ileD > 3 && $ileD > $ileC && $ileD >= $ileH && $ileD >= $ileS){$propozycja = 2;} # 1 karo				
+				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >5 &&  $ileH > 3 && $ileH > $ileD && $ileH >= $ileS){$propozycja = 3;} # 1 kier
+				if ($odzywkiwypowiedziane{$indeks-1} < 4 && $punktyPrzeliczeniowe >5 &&  $ileS > 3 && $ileS > $ileD && $ileS > $ileH){$propozycja = 4;} # 1 pik
+				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >5 &&  $ileH == 5 && $ileH> $ileC && $ileH >= $ileD && $ileH > $ileS){$propozycja = 3;} # 1 kier	
+				if ($odzywkiwypowiedziane{$indeks-1} < 4 && $punktyPrzeliczeniowe >5 &&  $ileS == 5 && $ileS> $ileC && $ileS > $ileD && $ileS >= $ileH){$propozycja = 4;} # 1 pik	
+				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >5 && $ileH > 3 && $ileH > $ileC && $ileH > $ileD && $ileH > $ileS){$propozycja = 3;} # 1 kier
+				# podniesienia bilansowe;
+				if ($odzywkiwypowiedziane{0} < 2 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileC >5 && $ileC >= $ileD && $ileC >= $ileH && $ileC >= $ileS){$propozycja = 6;} # 2 trefl
+				if ($odzywkiwypowiedziane{$indeks-1} < 2 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&  $ileD > 5 && $ileD > $ileC && $ileD >= $ileH && $ileD >= $ileS){$propozycja = 7;} # 2 karo				
+				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileH > 3 && $ileH > $ileC && $ileH > $ileD && $ileH >= $ileS){$propozycja = 8;} # 2 kier
+				if ($odzywkiwypowiedziane{$indeks-1} < 4 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&  $ileS > 3 && $ileS> $ileC && $ileS > $ileD && $ileS > $ileH){$propozycja = 9;} # 2 pik
+				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&  $ileH == 5 && $ileH> $ileC && $ileH >= $ileD && $ileH > $ileS){$propozycja = 8;} # 2 kier	
+				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileS == 5 && $ileS> $ileC && $ileS > $ileD && $ileS >= $ileH){$propozycja = 9;} # 2 pik	
+				if ($odzywkiwypowiedziane{$indeks-1} < 3 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileH > 3 && $ileH > $ileC && $ileH > $ileD && $ileH >= $ileS){$propozycja = 8;} # 2 kier
+				if ($odzywkiwypowiedziane{$indeks-1} < 2 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileH > 3 && $ileH > $ileC && $ileH > $ileD && $ileH >= $ileS){$propozycja = 11;} # 3 trefl
+				#podniesienia zaporowe
+				if ($odzywkiwypowiedziane{$indeks-1} == 1 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileC == 5 && ($ileD < 2 || $ileH < 2 ||$ileS < 2)){$propozycja = 16;} # 4 trefl
+				if ($odzywkiwypowiedziane{$indeks-1} == 2 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileD == 5 && ($ileC < 2 || $ileH < 2 ||$ileS < 2)){$propozycja = 17;} # 4 karo
+				# odpowiedzi na 1 kier i pik
+				if ($odzywkiwypowiedziane{$indeks-1} == 3 && $punktyPrzeliczeniowe >6 && $punktyPrzeliczeniowe < 9 && $ileH == 3 ){$propozycja = 8;} # 2 kier
+				if ($odzywkiwypowiedziane{$indeks-1} == 4 && $punktyPrzeliczeniowe >6 && $punktyPrzeliczeniowe < 9 && $ileS == 3 ){$propozycja = 9;}# 2 pik
+				if ($odzywkiwypowiedziane{$indeks-1} == 3 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 && $ileH == 3 ){$propozycja = 13;} # 3 kier
+				if ($odzywkiwypowiedziane{$indeks-1} == 4 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 && $ileS == 3 ){$propozycja = 14;}# 3 pik
+				# podniesienia pojedyncze
+				# podniesienia bilansowe
+				# podniesienia zaporowe
+				if ($odzywkiwypowiedziane{$indeks-1} == 3 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileH == 6 && ($ileD < 2 || $ileC < 2 ||$ileS < 2)){$propozycja = 18;} # 4 kier
+				if ($odzywkiwypowiedziane{$indeks-1} == 4 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileS == 6 && ($ileD < 2 || $ileH < 2 ||$ileC < 2)){$propozycja = 19;} # 4 pik
 				
+				# podniesienia do BA
+				if ($odzywkiwypowiedziane{$indeks-1} < 5 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 &&   $ileC > 5 && $ileD <  4 && $ileH < 4 && $ileS < 4){$propozycja = 5;} # 1 BA
+				if ($odzywkiwypowiedziane{$indeks-1} < 5 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileC < 5 && $ileD <  4 && $ileH < 4 && $ileS < 4 && $rekazrownowazona == 1){$propozycja = 10;} # 2 BA
+				if ($odzywkiwypowiedziane{$indeks-1} < 5 && $punktyPrzeliczeniowe >15 && $punktyPrzeliczeniowe < 19 &&   $ileC < 5 && $ileD <  4 && $ileH < 4 && $ileS < 4 && $rekazrownowazona == 1){$propozycja = 15;} # 3 BA
+				# odpowiedzi na 1 BA
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 1 && $punktyPrzeliczeniowe >7 && $punktyPrzeliczeniowe <10){$propozycja=10;} # 2 BA
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 1 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe <16){$propozycja=15;} # 3 BA
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 1 && $punktyPrzeliczeniowe >15 && $punktyPrzeliczeniowe <18){$propozycja=20;} # 4 BA
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 1 && $punktyPrzeliczeniowe >17 && $punktyPrzeliczeniowe <20){$propozycja=30;} # 6 BA
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 1 && $punktyPrzeliczeniowe >19 && $punktyPrzeliczeniowe <22){$propozycja=25;} # 5 BA
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 1 && $punktyPrzeliczeniowe >21){$propozycja=35;} # 7 BA
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe >9 && ($ileS == 4 || $ileS == 5 || $ileH == 4 || $ileH == 5)){$propozycja = 6;} #2 trefl - Stayman
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe <8 && $ileD > 4){$propozycja = 7;} # 2 karo
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe <8 && $ileH > 4){$propozycja = 8;} # 2 kier
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe <8 && $ileS > 4){$propozycja = 9;} # 2 pik
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe >9 && $ileC > 4){$propozycja = 11;} # 3 trefl
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe >9 && $ileD > 4){$propozycja = 12;} # 3 karo
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe >9 && $ileH > 4){$propozycja = 13;} # 3 kier
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe >9 && $ileS > 4){$propozycja = 14;} # 3 pik
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe <16 && $ileC > 5){$propozycja = 15;} # 4 kier
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe <16 && $ileD > 5){$propozycja = 15;} # 4 pik
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe <16 && $ileH > 5){$propozycja = 18;} # 4 kier
+				if ($odzywkiwypowiedziane{$indeks-1} == 5 && $rekazrownowazona == 0 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe <16 && $ileS > 5){$propozycja = 19;} # 4 pik
+				# odpowiedzi na 2 trefl
+				if ($odzywkiwypowiedziane{$indeks-1} == 6) {
+					if ($punktyPrzeliczeniowe < 8){$propozycja = 7;} # 2 karo - negat
+					elsif ($punktyPrzeliczeniowe > 7 && $ileH > 4 && $mocH > 1){$propozycja = 8;} # 2 kier
+					elsif ($punktyPrzeliczeniowe > 7 && $ileS > 4 && $mocS > 1){$propozycja = 9;} # 2 pik
+					elsif ($punktyPrzeliczeniowe > 7 && $ileC > 4 && $mocC > 1){$propozycja = 11;} # 3 trefl
+					elsif ($punktyPrzeliczeniowe > 7 && $ileD > 4 && $mocD > 1){$propozycja = 12;} # 3 karo
+					else {$propozycja = 36;}
+				}
+				
+				#odpowiedz na otwarcie zaporowe
+				if ($odzywkiwypowiedziane{$indeks-1} > 15){$propozycja = 36;}
 			}
 			print "Proponuje powiedziec:\n";
 			print $listaOdzywek[$propozycja];
-			printf "\nCo powidziales\n";
+			printf "\nCo powiedziales\n";
 			($indexodzywki,$ilePas, $odzew) = &odzew($ostatniodzew,$ilePas,$listaOdzywek[$ostatniodzew]);
 			if ($indexodzywki>$ostatniodzew){
 				$ostatniodzew= $indexodzywki;
@@ -260,7 +318,8 @@ while($ilePas < 3 || $pentla < 1 ){
 			($indexodzywki,$ilePas, $odzew) = &odzew($ostatniodzew,$ilePas,$listaOdzywek[$ostatniodzew]);
 			if ($indexodzywki>$ostatniodzew){
 				$ostatniodzew= $indexodzywki;
-				$odzywkiwypowiedziane{$indeks}=$odzew;
+				if ($odzew eq "PAS")
+				$odzywkiwypowiedziane{$indeks}=$indexodzywki;
 				$indeks++;
 				}
 		}
@@ -269,7 +328,7 @@ while($ilePas < 3 || $pentla < 1 ){
 			printf ("Co powiedzial przeciwnik na pozycji '%s' \n", $_ );
 			($indexodzywki,$ilePas, $odzew) = &odzew($ostatniodzew,$ilePas,$listaOdzywek[$ostatniodzew]);
 			if ($indexodzywki>$ostatniodzew){
-				$ostatniodzew= $indexodzywki;
+				$ostatniodzew = $indexodzywki;
 			}
 		
 		}
