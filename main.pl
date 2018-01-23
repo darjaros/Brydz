@@ -250,23 +250,23 @@ while($ilePas < 3 || $pentla < 1 ){
 				if ($odzywkiwypowiedziane{0} < 4 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&  $ileS > 3 && $ileS> $ileC && $ileS > $ileD && $ileS > $ileH){$propozycja = 9;} # 2 pik
 				if ($odzywkiwypowiedziane{0} < 3 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&  $ileH == 5 && $ileH> $ileC && $ileH >= $ileD && $ileH > $ileS){$propozycja = 8;} # 2 kier	
 				if ($odzywkiwypowiedziane{0} < 3 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileS == 5 && $ileS> $ileC && $ileS > $ileD && $ileS >= $ileH){$propozycja = 9;} # 2 pik	
-				if ($odzywkiwypowiedziane{0} < 3 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileH > 3  $ileH > $ileC && $ileH > $ileD && $ileH >= $ileS){$propozycja = 8;} # 2 kier
-				if ($odzywkiwypowiedziane{0} < 2 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileH > 3  $ileH > $ileC && $ileH > $ileD && $ileH >= $ileS){$propozycja = 11;} # 3 trefl
+				if ($odzywkiwypowiedziane{0} < 3 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileH > 3 && $ileH > $ileC && $ileH > $ileD && $ileH >= $ileS){$propozycja = 8;} # 2 kier
+				if ($odzywkiwypowiedziane{0} < 2 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileH > 3 && $ileH > $ileC && $ileH > $ileD && $ileH >= $ileS){$propozycja = 11;} # 3 trefl
 				#podniesienia zaporowe
-				if ($odzywkiwypowiedziane{0} == 1 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileC == 5 && ($ileD < 2 || $ileH < 2 ||$ileS < 2){$propozycja = 16;} # 4 trefl
-				if ($odzywkiwypowiedziane{0} == 2 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileD == 5 && ($ileC < 2 || $ileH < 2 ||$ileS < 2){$propozycja = 17;} # 4 karo
+				if ($odzywkiwypowiedziane{0} == 1 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileC == 5 && ($ileD < 2 || $ileH < 2 ||$ileS < 2)){$propozycja = 16;} # 4 trefl
+				if ($odzywkiwypowiedziane{0} == 2 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileD == 5 && ($ileC < 2 || $ileH < 2 ||$ileS < 2)){$propozycja = 17;} # 4 karo
 				
 				# odpowiedzi na 1 kier i pik
 				# podniesienia pojedyncze
 				# podniesienia bilansowe
 				# podniesienia zaporowe
-				if ($odzywkiwypowiedziane{0} == 3 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileC == 6 && ($ileD < 2 || $ileC < 2 ||$ileS < 2){$propozycja = 18;} # 4 kier
-				if ($odzywkiwypowiedziane{0} == 4 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileC == 6 && ($ileD < 2 || $ileH < 2 ||$ileC < 2){$propozycja = 19;} # 4 pik
+				if ($odzywkiwypowiedziane{0} == 3 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileC == 6 && ($ileD < 2 || $ileC < 2 ||$ileS < 2)){$propozycja = 18;} # 4 kier
+				if ($odzywkiwypowiedziane{0} == 4 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 && $ileC == 6 && ($ileD < 2 || $ileH < 2 ||$ileC < 2)){$propozycja = 19;} # 4 pik
 				
 				# podniesienia do BA
 				if ($odzywkiwypowiedziane{0} < 5 && $punktyPrzeliczeniowe >5 && $punktyPrzeliczeniowe < 10 &&   $ileC > 5 && $ileD <  4 && $ileH < 4 && $ileS < 4){$propozycja = 5;} # 1 BA
-				if ($odzywkiwypowiedziane{0} < 5 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileC < 5  $ileD <  4 && $ileH < 4 && $ileS < 4 && $rekazrownowazona == 1){$propozycja = 10;} # 2 BA
-				if ($odzywkiwypowiedziane{0} < 5 && $punktyPrzeliczeniowe >15 && $punktyPrzeliczeniowe < 19 &&   $ileC < 5  $ileD <  4 && $ileH < 4 && $ileS < 4 && $rekazrownowazona == 1){$propozycja = 15;} # 3 BA
+				if ($odzywkiwypowiedziane{0} < 5 && $punktyPrzeliczeniowe >9 && $punktyPrzeliczeniowe < 12 &&   $ileC < 5 && $ileD <  4 && $ileH < 4 && $ileS < 4 && $rekazrownowazona == 1){$propozycja = 10;} # 2 BA
+				if ($odzywkiwypowiedziane{0} < 5 && $punktyPrzeliczeniowe >15 && $punktyPrzeliczeniowe < 19 &&   $ileC < 5 && $ileD <  4 && $ileH < 4 && $ileS < 4 && $rekazrownowazona == 1){$propozycja = 15;} # 3 BA
 				
 				# odpowiedzi na 1 BA
 				if ($odzywkiwypowiedziane{0} == 5 && $rekazrownowazona == 1 && $punktyPrzeliczeniowe >7 && $punktyPrzeliczeniowe <10){$propozycja=10;} # 2 BA
@@ -295,7 +295,7 @@ while($ilePas < 3 || $pentla < 1 ){
 					elsif ($punktyPrzeliczeniowe > 7 && $ileS > 4 && $mocS > 1){$propozycja = 9;} # 2 pik
 					elsif ($punktyPrzeliczeniowe > 7 && $ileC > 4 && $mocC > 1){$propozycja = 11;} # 3 trefl
 					elsif ($punktyPrzeliczeniowe > 7 && $ileD > 4 && $mocD > 1){$propozycja = 12;} # 3 karo
-					else ($propozycja = 36;)
+					else {$propozycja = 36;}
 				}
 				
 				#odpowiedz na otwarcie zaporowe
